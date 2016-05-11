@@ -1,0 +1,191 @@
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+CommonJS modules
+-------------------------------------------------------------------------------------------------------------------------------------
+CommonJS is a project started in 2009 to standardize the way of working with JavaScript outside the browser. It has three keys
+components when working with modules:
+* require():  This method is used to load the module into your code
+* exports:    This object is contained in each module and allows you to expose pieces of your code when the module is loaded
+* module:     This object was originally used to provide metadata information about the module. It also contains the pointer 
+              of an exports object as a property. However, the popular implementation of the exports object as a standalone 
+              object literally changed the use case of the module object
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+Express
+-------------------------------------------------------------------------------------------------------------------------------------
+Express is a routing and middleware web framework that has minimal functionality of its own: An Express application is essentially
+a series of middleware function calls. Middleware functions are functions that have access to the req, res, and the next middleware 
+function in the application's request-response cycle. The next middleware function is commonly denoted by a variable named next.
+
+Middleware functions can perform the following tasks:
+* Execute any code
+* Make changes to the request and the response objects
+* End the request-response cycle
+* Call the next middleware function in the stack
+
+Express presents 3 major objects: application, request, response
+* application:    instance of an Express application, used to configure your application
+* request:        a wrapper of Node's HTTP request object and is used to extract info about the currently handled HTTP request
+* response:       a wrapper of Node's HTTP response object and is used to set the response data & headers
+
+application object
+------------------
+app.set(name, value):   used to set environment variables that Express will use in its configuration
+app.get(name):          used to get environment variables that Express is using in its configuration
+app.VERB(path, [callback...], callback):   
+                        used to define one or more middleware functions to respond to HTTP requests made to a 
+                        certain path in conjunction with the HTTP verb declared. i.e. app.get() 
+app.use([path], callback):  
+                        used to create an Express middleware to handle HTTP requests sent to the server. Optionally, you'll be
+                        able to mount middleware to respond to certain paths.
+app.route(path) .VERB([callback...], callback): 
+                        used to define one or more middleware functions to respond to HTTP requests made to a certain unified
+                        path in conjunction with multiple HTTP verbs. For instance, when you want to respond to requests that
+                        are using the GET and POST verbs, you can just assign the appropriate middleware functions using
+                        app.route(path).get(callback).post(callback)
+app.render():           used to render the view and then pass the HTML to a callback function (less common than res.render)
+
+response object
+---------------
+res.render(view, [locals], callback):   used to render a view & send an HTML response
+
+express.static(root, [options]): the only built-in middleware function in Express to serve static files such as images, CSS files and 
+                        JavaScript files 
+    app.use(express.static('public'));
+
+morgan: an HTTP request logger middleware for node.js
+
+body-parser: body-parsing middleware that's used to parse the request body, and it supports various request types.
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+JADE
+-------------------------------------------------------------------------------------------------------------------------------------
+Jade is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node & browsers
+---------->
+doctype html
+html(lang="en")
+  head
+    title= pageTitle
+    script(type='text/javascript').
+      if (foo) bar(1 + 5)
+  body
+    h1 Jade - node template engine
+    #container.col
+      if youAreUsingJade
+        p You are amazing
+      else
+        p Get on it!
+      p.
+        Jade is a terse and simple templating language with a
+        strong focus on performance and powerful features.
+------------>
+        <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Jade</title>
+    <script type="text/javascript">
+      if (foo) bar(1 + 5)
+    </script> 
+  </head>
+  <body>
+    <h1>Jade - node template engine</h1>
+    <div id="container" class="col">
+      <p>You are amazing</p>
+      <p>Jade is a terse and simple templating language with a strong focus on performance and powerful features.</p>
+    </div>
+  </body>
+</html>
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+nodemon
+-------------------------------------------------------------------------------------------------------------------------------------
+For use during development of a node.js based application.
+
+nodemon will watch the files in the directory in which nodemon was started, and if any files change, nodemon will automatically
+restart your node application.
+
+nodemon does not require any changes to your code or method of development. nodemon simply wraps your node application and keeps 
+an eye on any files that have changed. Remember that nodemon is a replacement wrapper for node, think of it as replacing the word
+"node" on the command line when you run your script.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+Stylus
+-------------------------------------------------------------------------------------------------------------------------------------
+a CSS-preprocessor. provides an efficient, dynamic and expressive way to generate CSS. similar to LESS or SASS.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+angular-resource
+-------------------------------------------------------------------------------------------------------------------------------------
+angular.module('app', ['ngResource']);
+The ngResource module provides interaction support with RESTful services via the $resource service.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+$location
+-------------------------------------------------------------------------------------------------------------------------------------
+The $location service parses the URL in the browser address bar (based on window.location) and makes the URL available to your app.
+Changes to the URL in the address bar are reflected into the $location service and changes to $location are reflected into the browser 
+address bar.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+Mongoose
+-------------------------------------------------------------------------------------------------------------------------------------
+is a Node.js ODM module that adds MongoDB support to your Express application. 
+* uses schemas to model your entities
+* offers predefined validation along with custom validations
+* allows you to define virtual attributes
+* uses middleware hooks to intercept operations 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+Heroku
+-------------------------------------------------------------------------------------------------------------------------------------
+* web hosting site 
+* initial commands: Console
+    heroku create   //creates app
+    heroku login
+    heroku config:set NODE_ENV=production
+    heroku ps:scale web=1
+* Error handling: Console
+    heroku logs
+    heroku restart
+    heroku keys         // lists the keys heroku has for you
+    heroku keys:add     // add your keys
+    heroku keys:clear   // remove all keys from heroku
+    heroku keys:remove yyardim@gmail.com    // remove keys associated to this email
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+mLab
+-------------------------------------------------------------------------------------------------------------------------------------
+* Db Hosting site
+* Console login
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+mLab
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+git
+-------------------------------------------------------------------------------------------------------------------------------------
+* once logged in heroku, ran these commands to deploy
+* git remote -v             // to list remotes
+* git push heroku master
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+Other Notes
+-------------------------------------------------------------------------------------------------------------------------------------
+* This year, I'll have 5 projects up and running. 1 will be a promising one. At least. This is my 2016 resolution.

@@ -1,0 +1,34 @@
+{
+  "name": "propertymanager",
+  "version": "1.0.0",
+  "description": "property management spa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyardim/propertyManager.git"
+  },
+  "author": "yener yardim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "~4.13.4",
+    "morgan": "~1.7.0",
+    "compression": "~1.6.1",
+    "body-parser": "~1.15.1",
+    "method-override": "~2.3.5",
+    "express-session": "~1.13.0",
+    "ejs": "~2.4.1"
+  },
+  "bugs": {
+    "url": "https://github.com/yyardim/propertyManager/issues"
+  },
+  "keywords": [
+    "MongoDB",
+    "Express",
+    "AngularJS",
+    "Node.js"
+  ],
+  "homepage": "https://github.com/yyardim/propertyManager#readme"
+}
