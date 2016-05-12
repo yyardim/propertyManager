@@ -19,7 +19,8 @@
     "body-parser": "~1.15.1",
     "method-override": "~2.3.5",
     "express-session": "~1.13.0",
-    "ejs": "~2.4.1"
+    "ejs": "~2.4.1",
+    "mongoose": "~4.4.16"
   },
   "bugs": {
     "url": "https://github.com/yyardim/propertyManager/issues"

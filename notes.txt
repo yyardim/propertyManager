@@ -44,6 +44,9 @@ app.route(path) .VERB([callback...], callback):
                         path in conjunction with multiple HTTP verbs. For instance, when you want to respond to requests that
                         are using the GET and POST verbs, you can just assign the appropriate middleware functions using
                         app.route(path).get(callback).post(callback)
+app.param([name], callback):
+                        used to attach a certain functionality to any request made to a path that includes a certain routing
+                        parameter. app.param('userId', callback)
 app.render():           used to render the view and then pass the HTML to a callback function (less common than res.render)
 
 response object
@@ -59,46 +62,6 @@ morgan: an HTTP request logger middleware for node.js
 body-parser: body-parsing middleware that's used to parse the request body, and it supports various request types.
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
-
--------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------
-JADE
--------------------------------------------------------------------------------------------------------------------------------------
-Jade is a high performance template engine heavily influenced by Haml and implemented with JavaScript for node & browsers
----------->
-doctype html
-html(lang="en")
-  head
-    title= pageTitle
-    script(type='text/javascript').
-      if (foo) bar(1 + 5)
-  body
-    h1 Jade - node template engine
-    #container.col
-      if youAreUsingJade
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        Jade is a terse and simple templating language with a
-        strong focus on performance and powerful features.
------------->
-        <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Jade</title>
-    <script type="text/javascript">
-      if (foo) bar(1 + 5)
-    </script> 
-  </head>
-  <body>
-    <h1>Jade - node template engine</h1>
-    <div id="container" class="col">
-      <p>You are amazing</p>
-      <p>Jade is a terse and simple templating language with a strong focus on performance and powerful features.</p>
-    </div>
-  </body>
-</html>
 
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -181,8 +144,48 @@ git
 * git remote -v             // to list remotes
 * git push heroku master
 
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+mongo
+-------------------------------------------------------------------------------------------------------------------------------------
+>show dbs
+>use propertymanager
+>show collections
+>db.dropDatabase()
 
+system.indexes is another collection that's there, holding the list of db indexes
+>db.posts.drop()
 
+CRUD: 
+>db.posts.insert({"title":"first post","user":"bob"})
+>db.posts.update({"user":"alice"},{"title":"second post", "user":"alice"}, {upsert: true})
+>db.posts.save({"title":"second post","user":"alice"})
+
+>db.posts.find()
+>db.posts.find({})
+>db.posts.find({"user":"alice"})
+>db.posts.find({"user": {$in: ["alice","bob"]} })
+>db.posts.find({"user":"alice", "commentsCount": { $gt: 10 } }) //AND
+>db.posts.find({ $or: [{ "user":"alice" }, { "user":"bob" }] })
+
+>db.posts.update({
+  "user": "alice"           // selection criteria
+}, {
+  $set: {                   // update statement
+    "title": "Second Post"
+  }
+}, {
+  multi: true               // options
+})
+
+>db.posts.save({            // if save cannot find, it creates one
+  "_id": ObjectId("5069345j934oijerad494993"),
+  "title": "Second Post",
+  "user": "alice"
+})
+
+>db.posts.remove({"user":"alice"})  // removes all documents that match
+>db.posts.remove({"user":"alice"}, true)    // removes first that match
 
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
