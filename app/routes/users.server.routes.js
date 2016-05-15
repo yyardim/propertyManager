@@ -12,11 +12,19 @@ module.exports = function(app) {
         .get(users.list); 
         
     // Set up the 'users' parameterized routes
-    app.route('/users/:userId')
+    // app.route('/users/:userId')
+    //     .get(users.read)
+    //     .put(users.update)
+    //     .delete(users.delete);
+        
+    app.route('/users/:username')
         .get(users.read)
         .put(users.update)
         .delete(users.delete);
         
     // Set up the 'userId' parameter middleware
-    app.param('userId', users.userById);
+    // app.param('userId', users.userByID);
+    
+    // Set up the 'username' parameter middleware
+    app.param('username', users.userByUsername);
 };
