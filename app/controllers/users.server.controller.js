@@ -62,7 +62,7 @@ exports.delete = function(req, res, next) {
 };
 
 // Create a new 'userById' controller method
-exports.userByID = function(req, res, next, id) {
+exports.userById = function(req, res, next, id) {
     // Use the 'User' static 'findOne' method to retrieve a specific user
     User.findOne({
         _id: id
@@ -73,9 +73,9 @@ exports.userByID = function(req, res, next, id) {
         } else {
             // Set the 'req.user' property
             req.user = user;
-            
-            // Call the next middleware
             next();
+        } else {
+            next(new Error('failed to load user'));
         }
     });
 };
