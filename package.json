@@ -23,7 +23,8 @@
     "connect-flash": "~0.1.1",
     "mongoose": "~4.4.16",
     "passport": "~0.3.2",
-    "passport-local": "~1.0.0"
+    "passport-local": "~1.0.0",
+    "passport-facebook": "~2.1.0"
   },
   "bugs": {
     "url": "https://github.com/yyardim/propertyManager/issues"

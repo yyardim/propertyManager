@@ -96,6 +96,39 @@ exports.signup = function(req, res, next) {
     }
 };
 
+// Create a new controller method that creates new 'OAuth' users
+exports.saveOAuthUserProfile = function(req, profile, done) {
+    // Try finding a user document that was registered using the current OAuth provider
+    User.findOne({
+        provider: profile.provider,
+        providerId: profile.providerId
+    }, function(err, user) {
+        if (err) {
+            return done(err);
+        } else {
+            // If a user could not be found, create a new user, otherwise, continue to next middleware
+            if (!user) {
+                var possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
+                
+                User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
+                    // Set the available username
+                    profile.username = availableUsername;
+                    
+                    // Create the user
+                    user = new User(profile);
+                    
+                    // Try saving the new user document
+                    user.save(function(err) {
+                        return done(err, user);
+                    });
+                });
+            } else {
+                return done(err, user);
+            }
+        }
+    });
+};
+
 // Create a new controller method for signing out
 exports.signout = function(req, res) {
     // Use the Passport 'logout' method to logout

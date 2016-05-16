@@ -20,6 +20,15 @@ module.exports = function(app) {
             failureRedirect: '/signin',
             failureFlash: true
         }));
+    
+    // Set up the Facebook OAuth routes
+    app.get('/oauth/facebook', passport.authenticate('facebook', {
+        failureRedirect: '/signin'
+    }));
+    app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+        failureRedirect: '/signin',
+        successRedirect: '/'
+    }));
 
     // Set up the 'signout' route
     app.get('/signout', users.signout);
