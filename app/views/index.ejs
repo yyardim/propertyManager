@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
-    <img src="img/property_management.jpg" alt="Logo">
-    <h1><%= title %></h1>
-  </body>
+<head>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
+</head>
+<body>
+	<!-- If a user is authenticated, display the user's full name , otherwise display the authentication links -->
+	<% if ( userFullName ) { %>
+		<h2>Hello <%=userFullName%> </h2> 
+		<a href="/signout">Sign out</a>
+	<% } else { %>
+		<a href="/signup">Signup</a>
+		<a href="/signin">Signin</a>
+	<% } %>
+	<br>
+
+	<!-- Load the static image file  -->
+	<img src="img/property_management.jpg" alt="Logo">
+</body>
 </html>

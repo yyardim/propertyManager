@@ -2,7 +2,107 @@
 'use strict';
 
 // Load the 'User' Mongoose model
-var User = require('mongoose').model('User');
+var User = require('mongoose').model('User'),
+    passport = require('passport');
+
+// Create a new 'private' error handling controller method
+var getErrorMessage = function(err) {
+    var message = '';
+    
+    // If an internal MongoDB error occurs, get the error message
+    if (err.code) {
+        switch (err.code) {
+            case 11000:
+            case 11001:
+                message = 'Username already exists';
+                break;  
+            // If a general error occurs, set the message error 
+            default:
+                message = 'Something went wrong';
+                break;
+        }
+    } else {
+        // Grab the first error message from a list of possible errors
+        for (var errName in err.errors) {
+            if (err.errors[errName].message) {
+                message = err.errors[errName].message;
+            }
+        }
+    }
+    
+    // Return the error message
+    return message;
+};
+
+// Create a new controller method that renders the signin page
+exports.renderSignin = function(req, res, next) {
+    // If user is not connected, render the signin page, otherwise, redirect the user back to the main app page
+    if (!req.user) {
+        res.render('signin', {
+            title: 'Sign-in Form',
+            messages: req.flash('error') || req.flash('info')
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+// Create a new controller method that renders the signup page
+exports.renderSignup = function(req, res, next) {
+    // If user is not connected, render the signup page, otherwise, redirect the user back to the main app page
+    if (!req.user) {
+        res.render('signup', {
+            title: 'Sign-up Form',
+            messages: req.flash('error')
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+// Create a new controller method that creates new 'regular' users
+exports.signup = function(req, res, next) {
+    // If user is not connected, create and login a new user, otherwise, redirect to main
+    if (!req.user) {
+        // Create a new 'User' model instance
+        var user = new User(req.body);
+        var message = null;
+        
+        // Set the user provider property
+        user.provider = 'local';
+        
+        // Try saving the new user document
+        user.save(function(err) {
+            // If an error occurs, use flash messages to report the error
+            if (err) {
+                var message = getErrorMessage(err);
+                req.flash('error', message);
+                
+                return res.redirect('/signup');
+            }
+            
+            // If the user was created successfully, use the Passport 'login' method to login
+            req.login(user, function(err) {
+                // If a login error occurs, move to the next middleware
+                if (err) {
+                    return next(err);
+                }
+                
+                return res.redirect('/');
+            });
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+// Create a new controller method for signing out
+exports.signout = function(req, res) {
+    // Use the Passport 'logout' method to logout
+    req.logout();
+    
+    res.redirect('/');
+};
 
 // Create a new 'create' controller method
 exports.create = function(req, res, next) {
@@ -74,19 +174,19 @@ exports.userByUsername = function (req, res, next, username) {
 };
 
 // Create a new 'userById' controller method
-// exports.userByID = function(req, res, next, id) {
-//     // Use the 'User' static 'findOne' method to retrieve a specific user
-//     User.findOne({
-//         _id: id
-//     }, function(err, user) {
-//         if (err) {
-//             // Call the next middleware with an error message
-//             return next(err);
-//         } else {
-//             // Set the 'req.user' property
-//             req.user = user;
-//             next();
-//         }
-//     });
-// };
+ exports.userByID = function(req, res, next, id) {
+     // Use the 'User' static 'findOne' method to retrieve a specific user
+     User.findOne({
+         _id: id
+     }, function(err, user) {
+         if (err) {
+             // Call the next middleware with an error message
+             return next(err);
+         } else {
+             // Set the 'req.user' property
+             req.user = user;
+             next();
+         }
+     });
+ };
 
