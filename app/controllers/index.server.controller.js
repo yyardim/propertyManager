@@ -6,6 +6,6 @@ exports.render = function(req, res) {
     // Use the 'response' object to render the 'index' view with a 'title' and 'userFullname' properties    
     res.render('index', {
         title: 'Property Manager',
-        userFullName: req.user ? req.user.fullName : ''
+        user: JSON.stringify(req.user)
     });
 };
