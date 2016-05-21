@@ -34,17 +34,17 @@ module.exports = function(app) {
     app.get('/signout', users.signout);
         
     // Set up the 'users' base routes 
-    app.route('/users')
+    app.route('/api/users')
         .post(users.create)
         .get(users.list); 
         
     // Set up the 'users' parameterized routes
-     app.route('/users/:userId')
+     app.route('/api/users/:userId')
          .get(users.read)
          .put(users.update)
          .delete(users.delete);
         
-    //app.route('/users/:username')
+    //app.route('/api/users/:username')
     //    .get(users.read)
     //    .put(users.update)
     //     .delete(users.delete);
