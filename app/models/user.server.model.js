@@ -27,7 +27,7 @@ var UserSchema = new Schema({
         type: String,
         validate: [
             function(password) {
-                return password.length >= 6;
+                return password && password.length >= 6;
             }, 'Password should be longer'
         ]
     },
@@ -40,23 +40,6 @@ var UserSchema = new Schema({
     },
     providerId: String,
     providerData: {},
-    website: {
-        type: String,
-        set: function(url) {
-            if (!url) {
-                return url;
-            } else {
-                if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) {
-                    url = 'http://' + url;
-                }
-                return url;
-            }
-        }
-    },
-    role: {
-        type: String,
-        enum: ['Admin', 'Owner', 'User']
-    },
     created: {
         type: Date,
         default: Date.now
@@ -113,14 +96,6 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
             callback(null);
         }
     });
-};
-
-// Create the 'findOneByUsername' static method
-UserSchema.statics.findOneByUsername = function (username, callback) {
-    // Use the 'findOne' method to retrieve a user document
-    this.findOne({ 
-        username: new RegExp(username, 'i') 
-    }, callback);
 };
 
 // Configure the 'UserSchema' to use getters and virtuals when transforming to JSON

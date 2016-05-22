@@ -4,7 +4,7 @@
 // Set the 'development' environment configuration object
 module.exports = {
     db: 'mongodb://localhost/property-manager',
-    sessionSecret: 'developmentSessionSecret',
+    sessionSecret: 'developmentPrptyMngrSessionSecret',
     facebook: {
         clientID: '233647697012139',
         clientSecret: '552c7a5650a87ea24fa5c7bf52d1a469',

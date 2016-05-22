@@ -1,3 +1,5 @@
-'use strict';
-
-angular.module('example', []);
+(function(ng) {
+    'use strict';
+    
+    ng.module('example', []);    
+})(window.angular);

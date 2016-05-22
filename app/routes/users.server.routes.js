@@ -22,24 +22,24 @@ module.exports = function(app) {
         }));
     
     // Set up the Facebook OAuth routes
-    app.get('/oauth/facebook', passport.authenticate('facebook', {
-        failureRedirect: '/signin'
-    }));
-    app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
-        failureRedirect: '/signin',
-        successRedirect: '/'
-    }));
+    // app.get('/oauth/facebook', passport.authenticate('facebook', {
+    //     failureRedirect: '/signin'
+    // }));
+    // app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+    //     failureRedirect: '/signin',
+    //     successRedirect: '/'
+    // }));
 
     // Set up the 'signout' route
     app.get('/signout', users.signout);
         
     // Set up the 'users' base routes 
-    app.route('/users')
+    app.route('/api/users')
         .post(users.create)
         .get(users.list); 
         
     // Set up the 'users' parameterized routes
-     app.route('/users/:userId')
+     app.route('/api/users/:userId')
          .get(users.read)
          .put(users.update)
          .delete(users.delete);

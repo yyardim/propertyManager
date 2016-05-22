@@ -1,10 +1,21 @@
-// Invoke 'strict' JavaScript mode
-'use strict';
+(function(ng){
+	'use strict';
+	
+	var inject = ['$scope', 'Authentication'];
 
-// Create the 'example' controller
-angular.module('example').controller('ExampleController', ['$scope', 'Authentication',
-	function($scope, Authentication) {
-		// Get the user's 'fullName' 
-		$scope.name = Authentication.user ? Authentication.user.fullName : 'Property Manager';
+	function exampleController($scope, Authentication) {
+		var vm = this;
+		
+		init();
+		
+		function init() {
+			vm.name = Authentication.user ? Authentication.user.fullName : 'Property Manager';
+		}
 	}
-]);
+	
+	exampleController.$inject = inject;
+	
+	ng.module('example')
+		.controller('ExampleController', exampleController);
+
+})(window.angular);

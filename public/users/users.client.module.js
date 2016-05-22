@@ -1,5 +1,5 @@
-// Invoke 'strict' JavaScript mode
-'use strict';
-
-// Create the 'users' module
-angular.module('users', []);
+(function(ng) {
+    'use strict';
+    
+    ng.module('users', []);
+})(window.angular);
