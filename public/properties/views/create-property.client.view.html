@@ -1,0 +1,17 @@
+<section data-ng-controller="PropertiesController as vm">
+  <h1>New Property</h1>
+  <form data-ng-submit="vm.create()" novalidate>
+    <div>
+      <label for="name">Name</label>
+      <div>
+        <input type="text" data-ng-model="vm.name" id="name" placeholder="Name" required>
+      </div>
+    </div>
+    <div>
+      <input type="submit">
+    </div>
+    <div data-ng-show="vm.error">
+      <strong data-ng-bind="vm.error"></strong>
+    </div>
+  </form>
+</section>

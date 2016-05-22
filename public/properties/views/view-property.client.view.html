@@ -1,0 +1,13 @@
+<section data-ng-controller="PropertiesController as vm" data-ng-init="vm.findOne()">
+  <h1 data-ng-bind="vm.property.name"></h1>
+  <div data-ng-show="vm.authentication.user._id === vm.property.creator._id">
+    <a href="/#!/properties/{{vm.property._id}}/edit">edit</a>
+    <a href="#" data-ng-click="vm.delete();">delete</a>
+  </div>
+  <small>
+    <em>Added on</em>
+    <em data-ng-bind="vm.property.created | date: 'mediumDate'"></em>
+    <em>by</em>
+    <em data-ng-bind="vm.property.creator.fullName"></em>
+  </small>
+</section>

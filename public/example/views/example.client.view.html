@@ -1,4 +1,14 @@
-<section ng-controller="ExampleController">
-    <input type="text" id="text1" ng-model="name">
-    <input type="text" id="text2" ng-model="name">
+<section ng-controller="ExampleController as vm">
+  <div data-ng-show="!vm.authentication.user">
+    <a href="/signup">Signup</a>
+    <a href="/signin">Signin</a>
+  </div>
+  <div data-ng-show="vm.authentication.user">
+    <h1>Welcome <span data-ng-bind="vm.authentication.user.fullName"></span></h1>
+    <a href="/signout">Signout</a>
+    <ul>
+      <li><a href="/#!/properties">List Properties</a></li>
+      <li><a href="/#!/properties/create">Add Property</a></li>
+    </ul>
+  </div>
 </section>

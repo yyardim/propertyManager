@@ -4,15 +4,7 @@
 	<!-- Use the 'title' property to render a page title  -->
 	<title><%= title %></title>
 </head>
-<body>
-	<!-- If a user is authenticated, display the user's full name , otherwise display the authentication links -->
-	<% if (user) { %>
-		<a href="/signout">Sign out</a>
-	<% } else { %>
-		<a href="/signup">Signup</a>
-		<a href="/signin">Signin</a>
-	<% } %>
-	
+<body>	
 	<!-- Render AngularJS views  -->
 	<section ng-view></section>
 
@@ -28,10 +20,19 @@
 	<!-- Load local libraries -->
 	<script type="text/javascript" src="/lib/angular/angular.js"></script>
 	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+	
+	<!-- Load property module -->
+	<script type="text/javascript" src="/properties/properties.client.module.js"></script>
+	<script type="text/javascript" src="/properties/controllers/properties.client.controller.js"></script>
+	<script type="text/javascript" src="/properties/services/properties.client.service.js"></script>
+	<script type="text/javascript" src="/properties/config/properties.client.routes.js"></script>
+	
 	<!-- Load the example module -->
 	<script type="text/javascript" src="/example/example.client.module.js"></script>
 	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
 	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+	
 	<!-- Load the users module -->
 	<script type="text/javascript" src="/users/users.client.module.js"></script>
 	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>

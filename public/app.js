@@ -3,9 +3,11 @@
 	
 	var appModuleName = 'prptymngr';
 	var appModule = ng.module(appModuleName, [
+		'ngResource',
 		'ngRoute',
 		'users',
-		'example'
+		'example',
+		'properties'
 	]);
 	
 	appModule.config(['$locationProvider', function ($locationProvider){
@@ -13,7 +15,7 @@
 	}]);
 	
 	// Fix Facebook's OAuth bug
-	if (window.location.hash === '#_=_') window.location.hash = '#!';
+	//if (window.location.hash === '#_=_') window.location.hash = '#!';
 	
 	ng.element(document).ready(function() {
 		ng.bootstrap(document, [appModuleName]);

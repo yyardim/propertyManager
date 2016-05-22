@@ -1,0 +1,15 @@
+<section data-ng-controller="PropertiesController as vm" data-ng-init="vm.find()">
+  <h1>Properties</h1>
+  <ul>
+    <li data-ng-repeat="property in vm.properties">
+      <a data-ng-href="#!/properties/{{property._id}}" data-ng-bind="property.name"></a>
+      <br />
+      <small data-ng-bind="property.created | data:'medium'"></small>
+      <small>/</small>
+      <small data-ng-bind="property.creator.fullName"></small>
+    </li>
+  </ul>
+  <div data-ng-hide="!vm.properties || vm.properties.length">
+    No properties yet, <a href="/#!/properties/create">add your property</a> and start managing...
+  </div>
+</section>

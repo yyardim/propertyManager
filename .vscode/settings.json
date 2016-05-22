@@ -4,5 +4,7 @@
         "*.ejs": "html"
     },
     "files.autoSave": "onFocusChange",
-    "files.autoSaveDelay": 1000
+    "files.autoSaveDelay": 1000,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
 }

@@ -1,13 +1,19 @@
-(function(ng, Authentication) {
+(function(ng) {
 	'use strict';
-
+	
+	var inject = [];
+	
 	function usersFactory() {
-		this.user = window.user;
+		var vm = this;
+		
+		vm.user = window.user;
 		
 		return {
-			user: this.user
+			user: vm.user
 		};
 	}
+	
+	usersFactory.$inject = inject;
 	
 	ng.module('users')
 		.factory('Authentication', [usersFactory]);

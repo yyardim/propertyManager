@@ -9,7 +9,7 @@
 		init();
 		
 		function init() {
-			vm.name = Authentication.user ? Authentication.user.fullName : 'Property Manager';
+			vm.authentication = Authentication;
 		}
 	}
 	
