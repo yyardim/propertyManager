@@ -2,7 +2,8 @@
   <h1>Properties</h1>
   <ul>
     <li data-ng-repeat="property in vm.properties">
-      <a data-ng-href="#!/properties/{{property._id}}" data-ng-bind="property.name"></a>
+      <a data-ng-href="#!/properties/{{property._id}}" data-ng-bind="property.name"></a> at 
+      <label><span data-ng-bind="property.address.city"></span></label>
       <br />
       <small data-ng-bind="property.created | data:'medium'"></small>
       <small>/</small>

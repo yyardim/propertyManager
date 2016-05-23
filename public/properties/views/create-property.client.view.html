@@ -4,7 +4,31 @@
     <div>
       <label for="name">Name</label>
       <div>
-        <input type="text" data-ng-model="vm.name" id="name" placeholder="Name" required>
+        <input type="text" data-ng-model="vm.property.name" id="name" placeholder="Name" required>
+      </div>
+    </div>
+    <div>
+      <label for="address-line1">Address Line 1</label>
+      <div>
+        <input type="text" data-ng-model="vm.property.address.line1" id="address-line1" placeholder="Address Line 1" required>
+      </div>
+    </div>
+    <div>
+      <label for="address-line2">Address Line 2</label>
+      <div>
+        <input type="text" data-ng-model="vm.property.address.line2" id="address-line2" placeholder="Address Line 2">
+      </div>
+    </div>
+    <div>
+      <label for="city">City</label>
+      <div>
+        <input type="text" data-ng-model="vm.property.address.city" id="city" placeholder="City" required>
+      </div>
+    </div>
+    <div>
+      <label for="zip">Zip</label>
+      <div>
+        <input type="text" data-ng-model="vm.property.address.zip" id="zip" placeholder="Zip" required>
       </div>
     </div>
     <div>

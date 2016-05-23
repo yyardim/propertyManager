@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Property = mongoose.model('Property');
+    Property = mongoose.model('Property'),
+    Address = mongoose.model('Address');
 
 var getErrorMessage = function(err) {
     if (err.errors) {
@@ -17,7 +18,10 @@ var getErrorMessage = function(err) {
 
 exports.create = function (req, res) {
     var property = new Property(req.body);
+    var address = new Address(req.body.address);
+    
     property.creator = req.user;
+    property.address = address;
     
     property.save(function (err) {
         if (err) {
@@ -31,17 +35,18 @@ exports.create = function (req, res) {
 };
 
 exports.list = function (req, res) {
-    Property.find()
+    Property
+        .find({})
         .sort('-created')
         .populate('creator', 'firstName lastName fullName')
         .exec(function (err, properties) {
-        if (err) {
-            return res.status(400).send({
-                message: getErrorMessage(err)
-            });
-        } else {
-            res.json(properties);
-        }
+            if (err) {
+                return res.status(400).send({
+                    message: getErrorMessage(err)
+                });
+            } else {
+                res.json(properties);
+            }
     });
 };
 
@@ -66,8 +71,13 @@ exports.read = function (req, res) {
 
 exports.update = function(req, res) {
     var property = req.property;
+    var address = req.property.address;
     
     property.name = req.body.name;
+    property.address.line1 = address.line1;
+    property.address.line2 = address.line2;
+    property.address.city = address.city;
+    property.address.zip = address.zip;
     
     property.save(function (err) {
         if (err) {

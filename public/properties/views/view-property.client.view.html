@@ -4,6 +4,18 @@
     <a href="/#!/properties/{{vm.property._id}}/edit">edit</a>
     <a href="#" data-ng-click="vm.delete();">delete</a>
   </div>
+  <div>
+    <label><span data-ng-bind="vm.property.address.line1"></span></label>
+  </div>
+  <div>
+    <label><span data-ng-bind="vm.property.address.line2"></span></label>
+  </div>
+  <div>
+    <label><span data-ng-bind="vm.property.address.city"></span></label>
+  </div>
+  <div>
+    <label><span data-ng-bind="vm.property.address.zip"></span></label>
+  </div>
   <small>
     <em>Added on</em>
     <em data-ng-bind="vm.property.created | date: 'mediumDate'"></em>

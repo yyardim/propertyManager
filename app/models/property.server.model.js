@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
+    addressSchema = require('./address.server.model').addressSchema,
     Schema = mongoose.Schema;
     
 var PropertySchema = new Schema({
@@ -17,7 +18,8 @@ var PropertySchema = new Schema({
     creator: {
         type: Schema.ObjectId,
         ref: 'User'
-    }
+    },
+    address: addressSchema
 });
 
 mongoose.model('Property', PropertySchema);

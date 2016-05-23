@@ -15,7 +15,13 @@
     
     function createProperty() {
       var property = new Properties({
-        name: this.name
+        name: vm.property.name,
+        address: {
+          line1: vm.property.address.line1,
+          line2: vm.property.address.line2,
+          city: vm.property.address.city,
+          zip: vm.property.address.zip
+        }
       });
       
       // $save([params], [success], [error])
