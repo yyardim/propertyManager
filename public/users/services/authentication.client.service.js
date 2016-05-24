@@ -4,6 +4,7 @@
 	var inject = [];
 	
 	function usersFactory() {
+		/*jshint validthis: true */
 		var vm = this;
 		
 		vm.user = window.user;

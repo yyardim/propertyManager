@@ -1,3 +1,4 @@
+/* jshint node: true */
 // Invoke 'strict' JavaScript mode
 'use strict';
 

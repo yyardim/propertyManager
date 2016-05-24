@@ -11,7 +11,7 @@
                 method: 'PUT'
             }
         });
-    };
+    }
     
     propertiesFactory.$inject = inject;
     

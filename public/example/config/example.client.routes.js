@@ -9,5 +9,5 @@
 		otherwise({
 			redirectTo: '/'
 		});
-	}])	
+	}]);
 })(window.angular);

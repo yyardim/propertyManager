@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 var mongoose = require('mongoose'),
@@ -88,6 +89,14 @@ var AddressSchema = new Schema({
         type: String,
         match: [/^\d{5}$/, 'Please enter a 5 digit zip code'],
         required: 'Zip required'
+    },
+    lat: {
+        type: Number,
+        default: 59.325
+    },
+    lng: {
+        type: Number,
+        default: 18.070
     }
 });
 

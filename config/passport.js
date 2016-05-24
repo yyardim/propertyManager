@@ -1,4 +1,4 @@
-// Invoke 'strict' JavaScript mode
+/* jshint node: true */
 'use strict';
 
 // Load the module dependencies
@@ -26,4 +26,4 @@ module.exports = function () {
     
     require('./strategies/local.js')();
     require('./strategies/facebook.js')();
-}
+};

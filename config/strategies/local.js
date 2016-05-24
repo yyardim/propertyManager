@@ -1,4 +1,4 @@
-// Invoke 'strict' JavaScript mode
+/* jshint node: true */
 'use strict';
 
 // Load module dependencies

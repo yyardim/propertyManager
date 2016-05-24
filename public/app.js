@@ -1,7 +1,7 @@
 (function(ng) {
 	'use strict';
 	
-	var appModuleName = 'prptymngr';
+	var appModuleName = 'prprtymngr';
 	var appModule = ng.module(appModuleName, [
 		'ngResource',
 		'ngRoute',

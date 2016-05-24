@@ -1,4 +1,4 @@
-// Invoke 'strict' JavaScript mode
+/* jshint node: true */
 'use strict';
 
 // Load the 'User' Mongoose model
@@ -191,7 +191,7 @@ exports.delete = function(req, res, next) {
         } else {
             res.json(req.user);
         }
-    })
+    });
 };
 
 // Create custom static method 'findOneByUsername' call controller method

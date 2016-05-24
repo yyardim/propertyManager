@@ -26,6 +26,15 @@
     "passport-local": "~1.0.0",
     "passport-facebook": "~2.1.0"
   },
+  "devDependencies": {
+    "grunt":  "~1.0.1",
+    "grunt-env": "~0.4.4",
+    "grunt-nodemon": "~0.4.2",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-csslint": "~1.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-concurrent": "~2.3.0"
+  },
   "bugs": {
     "url": "https://github.com/yyardim/propertyManager/issues"
   },

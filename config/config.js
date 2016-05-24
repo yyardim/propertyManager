@@ -1,4 +1,4 @@
-// Invoke 'strict' JavaScript mode
+/* jshint node: true */
 'use strict';
 
 // Load the correct configuration file according to the 'NODE_ENV' variable
