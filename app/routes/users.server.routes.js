@@ -44,7 +44,7 @@ module.exports = function(app) {
          .put(users.update)
          .delete(users.delete);
         
-    //app.route('/users/:username')
+    //app.route('/api/users/:username')
     //    .get(users.read)
     //    .put(users.update)
     //     .delete(users.delete);
