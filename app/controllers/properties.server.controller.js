@@ -39,6 +39,7 @@ exports.list = function (req, res) {
         .find({})
         .sort('-created')
         .populate('creator', 'firstName lastName fullName')
+        .populate('address', 'line1 line2 city zip')
         .exec(function (err, properties) {
             if (err) {
                 return res.status(400).send({
@@ -71,13 +72,10 @@ exports.read = function (req, res) {
 
 exports.update = function(req, res) {
     var property = req.property;
-    var address = req.property.address;
+    var address = req.body.address;
     
     property.name = req.body.name;
-    property.address.line1 = address.line1;
-    property.address.line2 = address.line2;
-    property.address.city = address.city;
-    property.address.zip = address.zip;
+    property.address = address;
     
     property.save(function (err) {
         if (err) {
