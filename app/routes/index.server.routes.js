@@ -1,4 +1,4 @@
-// Invoke 'strict' JavaScript mode
+/* jshint node: true */
 'use strict';
 
 // Define the routes module' method

@@ -4,6 +4,7 @@
 	var inject = ['$scope', 'Authentication'];
 
 	function exampleController($scope, Authentication) {
+		/*jshint validthis: true */
 		var vm = this;
 		
 		init();

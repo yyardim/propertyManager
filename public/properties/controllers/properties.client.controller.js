@@ -4,6 +4,7 @@
   var inject = ['$scope', '$routeParams', '$location', 'Authentication', 'Properties'];
 
   function propertiesController($scope, $routeParams, $location, Authentication, Properties) {
+    /*jshint validthis: true */
     var vm = this;
 
     vm.authentication = Authentication;
@@ -30,17 +31,17 @@
       }, function(errorResponse) {
         vm.error = errorResponse.data.message;
       });
-    };
+    }
     
     function findProperties() {
       vm.properties = Properties.query();
-    };
+    }
     
     function findProperty() {
       vm.property = Properties.get({
         propertyId: $routeParams.propertyId
       });
-    };
+    }
     
     function updateProperty() {
       vm.property.$update(function() {
@@ -48,7 +49,7 @@
       }, function(errorResponse) {
         vm.error = errorResponse.data.message;
       });
-    };
+    }
     
     function deleteProperty(property) {
       if (property) {
@@ -64,7 +65,7 @@
           $location.path('properties');
         });
       }
-    };
+    }
   }
 
   propertiesController.$inject = inject;
